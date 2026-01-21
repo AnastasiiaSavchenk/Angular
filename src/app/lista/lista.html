@@ -1,0 +1,17 @@
+<h2>Lista de Ejemplos</h2>
+
+<div *ngIf="loading">⏳ Cargando...</div>
+<div *ngIf="error">{{ error }}</div>
+
+<ul *ngIf="!loading && ejemplos.length > 0">
+  <li *ngFor="let e of ejemplos">
+    <strong>ID:</strong> {{ e.id }} <br>
+    <strong>Título:</strong> {{ e.title }} <br>
+    <strong>Completado:</strong> {{ e.completed ? '✅ Sí' : '⏳ No' }} <br>
+    <button (click)="verPorId(e.id)">Ver</button>
+    <button (click)="borrar(e.id)">Borrar</button>
+    <hr>
+  </li>
+</ul>
+
+<div *ngIf="!loading && ejemplos.length === 0">📭 No hay datos disponibles</div>
