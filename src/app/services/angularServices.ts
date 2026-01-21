@@ -8,7 +8,8 @@ import { HttpClient } from "@angular/common/http"
 })
 
 export class AngularServices {
-    private apiUrl = 'https://jsonplaceholder.typicode.com/todos';
+    private apiUrl = 'https://jsonplaceholder.typicode.com/todos?_limit=20';
+
 
     constructor(private http:  HttpClient) {}
 
