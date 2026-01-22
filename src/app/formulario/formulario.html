@@ -14,7 +14,6 @@
     [(ngModel)]="tarea.title"
     required>
     
-
   <span *ngIf="tarea.title && tarea.title.length < 3">
     Mínimo 3 caracteres
   </span>
@@ -29,5 +28,6 @@
 
 </form>
 
-<p *ngIf="mensaje">{{ mensaje }}</p>a
+<p *ngIf="mensaje">{{ mensaje }}</p>
+
 
