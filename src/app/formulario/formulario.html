@@ -4,8 +4,9 @@
 
   <!-- ID (solo informativo) -->
   <label>ID</label>
-  <input type="number" name="id" [(ngModel)]="tarea.id" readonly>
-<span *ngIf="tarea.title touched"></span>
+  <input type="number" name="id" [(ngModel)]="tarea.id">
+>
+
   <!-- TÍTULO -->
   <label>Título *</label>
   <input
@@ -14,13 +15,14 @@
     [(ngModel)]="tarea.title"
     required>
     
-  <span *ngIf="tarea.title && tarea.title.length < 3">
+  <!-- <span *ngIf="tarea.title && tarea.title.length < 3">
     Mínimo 3 caracteres
   </span>
+  <br> -->
 <span *ngIf="tarea.title && tarea.title">
   El título es obligatorio (mínimo 3 caracteres)
 </span>
-  <br><br>
+  <br>
 
   <button type="submit" [disabled]="miForm.invalid">
     Guardar
