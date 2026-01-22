@@ -22,7 +22,7 @@ export class Lista implements OnInit {
 
   listaGet(): void {
     this.loading = true;
-    this.angularService.getEjemplos().subscribe({
+    this.angularService.getTasks().subscribe({
       next: data => {
         this.ejemplos = data.slice(0, 20); // limitar a 20 elementos
         this.loading = false;
@@ -39,7 +39,7 @@ export class Lista implements OnInit {
 
   verPorId(id: number | undefined): void {
     if (!id) return;
-    this.angularService.getEjemploById(id).subscribe({
+    this.angularService.getTaskById(id).subscribe({
       next: data => {
         alert(`ID: ${data.id}\nTítulo: ${data.title}\nCompletado: ${data.completed}`);
       },

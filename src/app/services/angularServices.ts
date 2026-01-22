@@ -1,40 +1,39 @@
-import { Injectable } from "@angular/core"
-import { Observable } from "rxjs"
-import { AngularModels } from "../models/angularModels"
-import { HttpClient } from "@angular/common/http"
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { AngularModels } from '../models/angularModels';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
-
 export class AngularServices {
-    private apiUrl = 'https://jsonplaceholder.typicode.com/todos?_limit=20';
 
+  private apiUrl = 'https://jsonplaceholder.typicode.com/todos';
 
-    constructor(private http:  HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-    // GET
-
-    getEjemplos(): Observable<AngularModels[]> {
+  // GET - Obtener todas
+  getTasks(): Observable<AngularModels[]> {
     return this.http.get<AngularModels[]>(this.apiUrl);
   }
-  //get by ID
-  getEjemploById(id: number): Observable<AngularModels> {
+
+  // GET - Obtener por ID
+  getTaskById(id: number): Observable<AngularModels> {
     return this.http.get<AngularModels>(`${this.apiUrl}/${id}`);
   }
-  
-  // POST
-  addEjemplo(angExamen: AngularModels): Observable<AngularModels> {
-    return this.http.post<AngularModels>(this.apiUrl, angExamen);
+
+  // POST - Crear nueva
+  createTask(task: AngularModels): Observable<AngularModels> {
+    return this.http.post<AngularModels>(this.apiUrl, task);
   }
 
-  // PUT
-  updateEjemplo(angExamen: AngularModels): Observable<AngularModels> {
-    return this.http.put<AngularModels>(`${this.apiUrl}/${angExamen.id}`, angExamen);
+  // PUT - Actualizar
+  updateTask(id: number, task: AngularModels): Observable<AngularModels> {
+    return this.http.put<AngularModels>(`${this.apiUrl}/${id}`, task);
   }
 
-  // DELETE
-  deleteEjemplo(id: number): Observable<void> {
+  // DELETE - Eliminar
+  deleteTask(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

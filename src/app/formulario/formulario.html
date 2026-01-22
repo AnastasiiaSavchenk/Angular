@@ -1,1 +1,15 @@
-<p>formulario works!</p>
+<h1>Formulario</h1>
+
+<input type="text" [(ngModel)]="task.title" placeholder="Título">
+
+<br><br>
+
+<label>
+    <input type="checkbox" [(ngModel)]="task.completed">
+    Completado
+</label>
+
+<br><br>
+
+<button (click)="crear()">POST_crear</button>
+<button (click)="editar()">PUT_editar</button>
