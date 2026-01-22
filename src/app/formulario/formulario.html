@@ -1,15 +1,16 @@
-<h1>Formulario</h1>
+<div class="formulario">
+  <h2>Formulario de Tarea</h2>
 
-<input type="text" [(ngModel)]="task.title" placeholder="Título">
+  <label>Título:</label>
+  <input type="text" [(ngModel)]="task.title" placeholder="Escribe el título">
 
-<br><br>
-
-<label>
+  <label>
     <input type="checkbox" [(ngModel)]="task.completed">
     Completado
-</label>
+  </label>
 
-<br><br>
-
-<button (click)="crear()">POST_crear</button>
-<button (click)="editar()">PUT_editar</button>
+  <div class="botones">
+    <button (click)="crear()">Crear (POST)</button>
+    <button (click)="editar()">Editarrrrrrrrrrrrr (PUT)</button>
+  </div>
+</div>

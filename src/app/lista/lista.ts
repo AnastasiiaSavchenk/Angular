@@ -60,4 +60,21 @@ export class Lista implements OnInit {
       console.log(`Ejemplo borrado:`, ejemplo);
     }
   }
+
+  editar(ejemplo: AngularModels): void {
+    const nuevoTitulo = prompt('Editar título', ejemplo.title);
+    if (nuevoTitulo === null) return; // Cancelar
+    ejemplo.title = nuevoTitulo;
+
+    this.angularService.updateTask(ejemplo.id!, ejemplo).subscribe({
+      next: updated => {
+        alert(`Ejemplo actualizado:\nID: ${updated.id}\nTítulo: ${updated.title}`);
+      },
+      error: err => {
+        console.error(err);
+        alert('Error al actualizar');
+      }
+    })
+  
+  }
 }

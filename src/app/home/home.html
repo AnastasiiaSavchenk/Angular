@@ -1,1 +1,18 @@
-<p>home works!</p>
+<h2>Ejemplo de Eventos en Angular</h2>
+
+<!-- 1. Click -->
+<button (click)="clickBoton()">Haz Click</button>
+
+<hr>
+
+<!-- 2. Input con Blur y KeyUp -->
+<label for="nombre">Escribe algo:</label>
+<input 
+  id="nombre" 
+  type="text" 
+  [(ngModel)]="inputText" 
+  (blur)="blurInput()" 
+  (keyup)="keyUpInput($event)"
+>
+
+<p>{{ mensaje }}</p>
