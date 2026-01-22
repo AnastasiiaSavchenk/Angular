@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -23,13 +24,13 @@ export class AngularServices {
   }
 
   // POST - Crear nueva
-  createTask(task: AngularModels): Observable<AngularModels> {
-    return this.http.post<AngularModels>(this.apiUrl, task);
+  createTask(crear: AngularModels): Observable<AngularModels> {
+    return this.http.post<AngularModels>(this.apiUrl, crear);
   }
 
   // PUT - Actualizar
-  updateTask(id: number, task: AngularModels): Observable<AngularModels> {
-    return this.http.put<AngularModels>(`${this.apiUrl}/${id}`, task);
+  updateTask(id: number, crear: AngularModels): Observable<AngularModels> {
+    return this.http.put<AngularModels>(`${this.apiUrl}/${id}`, crear);
   }
 
   // DELETE - Eliminar

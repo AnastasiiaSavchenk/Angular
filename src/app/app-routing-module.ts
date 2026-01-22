@@ -9,6 +9,7 @@ const routes: Routes = [
   {path:'home', component:Home},
   {path:'lista', component:Lista},
   {path:'formulario', component:Formulario},
+  { path:'formulario/:id', component: Formulario }, 
   {path:'**', component:Home}
 ];
 

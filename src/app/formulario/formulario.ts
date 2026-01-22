@@ -1,49 +1,44 @@
 import { Component } from '@angular/core';
-import { AngularModels } from '../models/angularModels';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AngularServices } from '../services/angularServices';
+import { AngularModels } from '../models/angularModels';
 
 @Component({
   selector: 'app-formulario',
   templateUrl: './formulario.html',
   styleUrl: './formulario.css',
-  standalone: false,
+  standalone: false
 })
 export class Formulario {
 
-  task: AngularModels = {
-    userId: 1,
+  tarea: AngularModels = {
     title: '',
     completed: false
   };
 
-  constructor(private taskService: AngularServices) {}
+  mensaje: string = '';
 
-  // Crear (POST)
-  crear(): void {
-    if (!this.task.title.trim()) {
-      alert('Escribe un título para la tarea');
+  constructor(private service: AngularServices) {}
+
+  guardar(): void {
+
+    // VALIDACIÓN BÁSICA (muy de examen)
+    if (!this.tarea.title || this.tarea.title.length < 3) {
+      this.mensaje = 'El título es obligatorio (mínimo 3 caracteres)';
       return;
     }
 
-    this.taskService.createTask(this.task).subscribe({
-      next: res => {
-        alert(`✅ Tarea creada:\nID: ${res.id}\nTítulo: ${res.title}\nCompletado: ${res.completed}`);
-        // Opcional: limpiar formulario
-        this.task.title = '';
-        this.task.completed = false;
-      },
-      error: err => alert(`❌ Error al crear tarea: ${err.message || err}`)
-    });
-  }
+    // 👉 SI HAY ID → PUT
+    if (this.tarea.id) {
+      this.service.updateTask(this.tarea.id, this.tarea).subscribe(() => {
+        this.mensaje = 'Tarea actualizada correctamente';
+      });
 
-  // Editar (PUT)
-  editar(): void {
-    const id = 1; // normalmente viene de la lista
-    this.taskService.updateTask(id, this.task).subscribe({
-      next: res => {
-        alert(`✏️ Tarea editada:\nID: ${res.id}\nTítulo: ${res.title}\nCompletado: ${res.completed}`);
-      },
-      error: err => alert(`❌ Error al editar tarea: ${err.message || err}`)
-    });
+    // 👉 SI NO HAY ID → POST
+    } else {
+      this.service.createTask(this.tarea).subscribe(() => {
+        this.mensaje = 'Tarea creada correctamente';
+      });
+    }
   }
 }

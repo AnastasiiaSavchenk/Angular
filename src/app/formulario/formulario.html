@@ -1,16 +1,33 @@
-<div class="formulario">
-  <h2>Formulario de Tarea</h2>
+<h2>Formulario</h2>
 
-  <label>Título:</label>
-  <input type="text" [(ngModel)]="task.title" placeholder="Escribe el título">
+<form (ngSubmit)="guardar()" #miForm="ngForm">
 
-  <label>
-    <input type="checkbox" [(ngModel)]="task.completed">
-    Completado
-  </label>
+  <!-- ID (solo informativo) -->
+  <label>ID</label>
+  <input type="number" name="id" [(ngModel)]="tarea.id" readonly>
+<span *ngIf="tarea.title touched"></span>
+  <!-- TÍTULO -->
+  <label>Título *</label>
+  <input
+    type="text"
+    name="title"
+    [(ngModel)]="tarea.title"
+    required>
+    
 
-  <div class="botones">
-    <button (click)="crear()">Crear (POST)</button>
-    <button (click)="editar()">Editarrrrrrrrrrrrr (PUT)</button>
-  </div>
-</div>
+  <span *ngIf="tarea.title && tarea.title.length < 3">
+    Mínimo 3 caracteres
+  </span>
+<span *ngIf="tarea.title && tarea.title">
+  El título es obligatorio (mínimo 3 caracteres)
+</span>
+  <br><br>
+
+  <button type="submit" [disabled]="miForm.invalid">
+    Guardar
+  </button>
+
+</form>
+
+<p *ngIf="mensaje">{{ mensaje }}</p>a
+
